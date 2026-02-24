@@ -151,7 +151,7 @@ func TestIntegration_EndToEnd(t *testing.T) {
 
 	// Create metrics with a test registry
 	registry := prometheus.NewRegistry()
-	metrics.NewSentinelMetrics(registry)
+	metrics.NewSentinelMetrics(registry, "test")
 
 	cfg := &config.SentinelConfig{
 		ResourceType:   "clusters",
@@ -260,7 +260,7 @@ func TestIntegration_LabelSelectorFiltering(t *testing.T) {
 
 	// Create metrics with a test registry
 	registry := prometheus.NewRegistry()
-	metrics.NewSentinelMetrics(registry)
+	metrics.NewSentinelMetrics(registry, "test")
 
 	cfg := &config.SentinelConfig{
 		ResourceType:   "clusters",
@@ -363,7 +363,7 @@ func TestIntegration_TSLSyntaxMultipleLabels(t *testing.T) {
 	log := logger.NewHyperFleetLogger()
 
 	registry := prometheus.NewRegistry()
-	metrics.NewSentinelMetrics(registry)
+	metrics.NewSentinelMetrics(registry, "test")
 
 	cfg := &config.SentinelConfig{
 		ResourceType:   "clusters",
