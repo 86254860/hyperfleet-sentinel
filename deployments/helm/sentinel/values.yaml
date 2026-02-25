@@ -141,7 +141,7 @@ monitoring:
   # PodMonitoring for Google Cloud Managed Prometheus
   podMonitoring:
     # Enable PodMonitoring creation
-    enabled: true
+    enabled: false
     # Scrape interval
     interval: 30s
     # Additional labels for PodMonitoring
