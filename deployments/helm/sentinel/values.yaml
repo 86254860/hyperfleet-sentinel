@@ -64,6 +64,13 @@ tolerations: []
 # Affinity
 affinity: {}
 
+# PodDisruptionBudget configuration
+podDisruptionBudget:
+  # Enable PDB creation
+  enabled: false
+  # Minimum number of pods that must remain available during voluntary disruptions
+  minAvailable: 1
+
 # Sentinel configuration
 config:
   # Resource type to watch (clusters, nodepools)
