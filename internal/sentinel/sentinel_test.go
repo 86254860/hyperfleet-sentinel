@@ -135,7 +135,7 @@ func TestTrigger_Success(t *testing.T) {
 
 	// Create metrics with a test registry (registers metrics once via sync.Once)
 	registry := prometheus.NewRegistry()
-	metrics.NewSentinelMetrics(registry)
+	metrics.NewSentinelMetrics(registry, "test")
 
 	cfg := &config.SentinelConfig{
 		ResourceType:   "clusters",
@@ -202,7 +202,7 @@ func TestTrigger_NoEventsPublished(t *testing.T) {
 
 	// Create metrics with a test registry (registers metrics once via sync.Once)
 	registry := prometheus.NewRegistry()
-	metrics.NewSentinelMetrics(registry)
+	metrics.NewSentinelMetrics(registry, "test")
 
 	cfg := &config.SentinelConfig{
 		ResourceType:   "clusters",
@@ -246,7 +246,7 @@ func TestTrigger_FetchError(t *testing.T) {
 
 	// Create metrics with a test registry (registers metrics once via sync.Once)
 	registry := prometheus.NewRegistry()
-	metrics.NewSentinelMetrics(registry)
+	metrics.NewSentinelMetrics(registry, "test")
 
 	cfg := &config.SentinelConfig{
 		ResourceType:   "clusters",
@@ -295,7 +295,7 @@ func TestTrigger_PublishError(t *testing.T) {
 
 	// Create metrics with a test registry (registers metrics once via sync.Once)
 	registry := prometheus.NewRegistry()
-	metrics.NewSentinelMetrics(registry)
+	metrics.NewSentinelMetrics(registry, "test")
 
 	cfg := &config.SentinelConfig{
 		ResourceType:   "clusters",
@@ -343,7 +343,7 @@ func TestTrigger_MixedResources(t *testing.T) {
 
 	// Create metrics with a test registry (registers metrics once via sync.Once)
 	registry := prometheus.NewRegistry()
-	metrics.NewSentinelMetrics(registry)
+	metrics.NewSentinelMetrics(registry, "test")
 
 	cfg := &config.SentinelConfig{
 		ResourceType:   "clusters",
