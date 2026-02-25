@@ -65,11 +65,12 @@ tolerations: []
 affinity: {}
 
 # PodDisruptionBudget configuration
+# See: https://kubernetes.io/docs/tasks/run-application/configure-pdb/#specifying-a-poddisruptionbudget
 podDisruptionBudget:
   # Enable PDB creation
-  enabled: false
-  # Minimum number of pods that must remain available during voluntary disruptions
-  minAvailable: 1
+  enabled: true
+  # Maximum number of pods that can be unavailable during voluntary disruptions
+  maxUnavailable: 1
 
 # Sentinel configuration
 config:

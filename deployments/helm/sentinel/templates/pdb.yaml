@@ -6,7 +6,7 @@ metadata:
   labels:
     {{- include "sentinel.labels" . | nindent 4 }}
 spec:
-  minAvailable: {{ .Values.podDisruptionBudget.minAvailable }}
+  maxUnavailable: {{ .Values.podDisruptionBudget.maxUnavailable }}
   selector:
     matchLabels:
       {{- include "sentinel.selectorLabels" . | nindent 6 }}
