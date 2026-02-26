@@ -506,6 +506,8 @@ kubectl get svc sentinel -n hyperfleet-system
 | `monitoring.serviceMonitor.metricRelabeling` | `[]` | Metric relabel configs |
 | `monitoring.serviceMonitor.namespace` | `""` | Override namespace for ServiceMonitor creation |
 
+> **Note**: When `monitoring.serviceMonitor.namespace` is set, a `namespaceSelector.matchNames` is automatically added pointing to the release namespace, so Prometheus can discover the Service across namespaces. To use a custom `namespaceSelector` instead, set `monitoring.serviceMonitor.namespaceSelector` explicitly.
+
 #### Coexistence with PodMonitoring
 
 ServiceMonitor and PodMonitoring can be enabled simultaneously for environments that support both. Each resource is independently gated:

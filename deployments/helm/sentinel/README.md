@@ -119,7 +119,7 @@ The following table lists the configurable parameters of the Sentinel chart and 
 | `monitoring.serviceMonitor.namespaceSelector` | Namespace selector for cross-namespace monitoring | `{}` |
 | `monitoring.serviceMonitor.honorLabels` | Honor labels from target | `true` |
 | `monitoring.serviceMonitor.metricRelabeling` | Metric relabel configs | `[]` |
-| `monitoring.serviceMonitor.namespace` | Override namespace for ServiceMonitor | `""` |
+| `monitoring.serviceMonitor.namespace` | Override namespace for ServiceMonitor (auto-adds `namespaceSelector`) | `""` |
 | `monitoring.prometheusRule.enabled` | Create PrometheusRule resource | `false` |
 | `monitoring.prometheusRule.namespace` | Override namespace for PrometheusRule | `""` |
 | `monitoring.prometheusRule.additionalLabels` | Additional labels for PrometheusRule | `{}` |

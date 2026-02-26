@@ -179,6 +179,8 @@ monitoring:
     # Metric relabel configs to apply to samples before ingestion
     metricRelabeling: []
     # Override the namespace where ServiceMonitor is created (defaults to release namespace)
+    # When set, a namespaceSelector.matchNames is automatically added pointing to the
+    # release namespace so Prometheus can discover the Service across namespaces.
     namespace: ""
 
   # PrometheusRule for alerting (requires Prometheus Operator or compatible system)
