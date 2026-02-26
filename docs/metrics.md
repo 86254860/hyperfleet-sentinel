@@ -486,11 +486,11 @@ helm install sentinel ./deployments/helm/sentinel \
 # Check ServiceMonitor was created
 kubectl get servicemonitor -n hyperfleet-system
 
-# Verify the ServiceMonitor details
-kubectl describe servicemonitor sentinel -n hyperfleet-system
+# Verify the ServiceMonitor details (name follows Helm release: <release>-sentinel)
+kubectl get servicemonitor -n hyperfleet-system -l app.kubernetes.io/name=sentinel
 
 # Verify the Service exposes the metrics port
-kubectl get svc sentinel -n hyperfleet-system
+kubectl get svc -n hyperfleet-system -l app.kubernetes.io/name=sentinel
 ```
 
 #### ServiceMonitor Configuration Options

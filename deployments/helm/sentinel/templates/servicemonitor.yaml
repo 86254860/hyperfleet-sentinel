@@ -30,7 +30,9 @@ spec:
       path: /metrics
       interval: {{ .Values.monitoring.serviceMonitor.interval | default "30s" }}
       scrapeTimeout: {{ .Values.monitoring.serviceMonitor.scrapeTimeout | default "10s" }}
-      {{- if .Values.monitoring.serviceMonitor.honorLabels }}
+      {{- if hasKey .Values.monitoring.serviceMonitor "honorLabels" }}
+      honorLabels: {{ .Values.monitoring.serviceMonitor.honorLabels }}
+      {{- else }}
       honorLabels: true
       {{- end }}
       {{- with .Values.monitoring.serviceMonitor.metricRelabeling }}
