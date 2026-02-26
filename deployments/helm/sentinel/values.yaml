@@ -157,6 +157,30 @@ monitoring:
     # Metric relabel configs to apply to samples before ingestion
     metricRelabeling: []
 
+  # ServiceMonitor for Prometheus Operator environments (OpenShift, vanilla Kubernetes)
+  # Can coexist with PodMonitoring (different environments)
+  serviceMonitor:
+    # Enable ServiceMonitor creation
+    enabled: false
+    # Scrape interval
+    interval: 30s
+    # Scrape timeout (must be less than interval)
+    scrapeTimeout: 10s
+    # Additional labels for ServiceMonitor to match Prometheus selector
+    # Example: release: prometheus
+    additionalLabels: {}
+    # Namespace selector for cross-namespace monitoring
+    # Example:
+    #   matchNames:
+    #     - hyperfleet-system
+    namespaceSelector: {}
+    # Honor labels from the target to avoid overwriting
+    honorLabels: true
+    # Metric relabel configs to apply to samples before ingestion
+    metricRelabeling: []
+    # Override the namespace where ServiceMonitor is created (defaults to release namespace)
+    namespace: ""
+
   # PrometheusRule for alerting (requires Prometheus Operator or compatible system)
   prometheusRule:
     # Enable PrometheusRule creation
