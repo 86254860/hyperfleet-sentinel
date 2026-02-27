@@ -266,26 +266,33 @@ To import:
 2. Upload `deployments/dashboards/sentinel-metrics.json`
 3. Select your Prometheus datasource
 
-### GKE Integration with Google Cloud Managed Prometheus
+### Prometheus Integration
 
-Sentinel integrates with Google Cloud Managed Prometheus (GMP) for automated metrics collection:
+Sentinel supports two monitoring resource types for automatic metrics scraping:
+
+| Environment | Resource | Helm Value |
+|-------------|----------|------------|
+| GKE with Google Cloud Managed Prometheus | PodMonitoring | `monitoring.podMonitoring.enabled=true` |
+| Prometheus Operator (OpenShift, vanilla K8s) | ServiceMonitor | `monitoring.serviceMonitor.enabled=true` |
 
 ```bash
-# Deploy with PodMonitoring enabled (default)
+# GKE with GMP (PodMonitoring)
 helm install sentinel ./deployments/helm/sentinel \
   --namespace hyperfleet-system \
-  --create-namespace
+  --set monitoring.podMonitoring.enabled=true
 
-# Verify metrics in Google Cloud Console
-# Navigate to: Monitoring → Metrics Explorer
-# Query: hyperfleet_sentinel_pending_resources
+# Prometheus Operator (ServiceMonitor)
+helm install sentinel ./deployments/helm/sentinel \
+  --namespace hyperfleet-system \
+  --set monitoring.serviceMonitor.enabled=true \
+  --set monitoring.serviceMonitor.additionalLabels.release=prometheus
 ```
 
-GMP automatically discovers the PodMonitoring resource and begins scraping metrics. No additional configuration required.
+Both resources can coexist for hybrid environments. See [docs/metrics.md](docs/metrics.md) for detailed configuration options.
 
 #### Alerting
 
-Configure alerts in **Google Cloud Console → Monitoring → Alerting** using the PromQL expressions provided in [docs/metrics.md](docs/metrics.md).
+Configure alerts using the PromQL expressions provided in [docs/metrics.md](docs/metrics.md).
 
 Recommended alerts:
 - SentinelHighPendingResources - High number of pending resources
@@ -297,15 +304,6 @@ Recommended alerts:
 - SentinelDown - Sentinel service is down
 
 See [docs/metrics.md](docs/metrics.md) for complete alerting rules documentation.
-
-### Accessing Metrics
-
-Access metrics through Google Cloud Console:
-1. Navigate to **Monitoring → Metrics Explorer**
-2. Select resource type: **Prometheus Target**
-3. Query: `hyperfleet_sentinel_pending_resources`
-
-Metrics are automatically collected by Google Cloud Managed Prometheus via the PodMonitoring resource.
 
 ## Repository Access
 
